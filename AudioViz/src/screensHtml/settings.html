@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoWave Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 242, 255, 0.4);
+            box-shadow: -4px 0 15px -5px rgba(0, 242, 255, 0.2);
+        }
+        .m3-switch {
+            appearance: none;
+            width: 52px;
+            height: 32px;
+            background: #353534;
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .m3-switch:checked {
+            background: #00f2ff;
+        }
+        .m3-switch::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            background: #e5e2e1;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .m3-switch:checked::before {
+            transform: translateX(20px);
+            background: #00363a;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "surface-bright": "#3a3939",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#353534",
+                    "tertiary": "#fff6e4",
+                    "primary-fixed-dim": "#00dbe7",
+                    "on-tertiary": "#3b2f00",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#554500",
+                    "primary-fixed": "#74f5ff",
+                    "outline": "#849495",
+                    "inverse-primary": "#00696f",
+                    "on-secondary-fixed-variant": "#00429a",
+                    "on-surface": "#e5e2e1",
+                    "secondary": "#afc6ff",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-container": "#201f1f",
+                    "tertiary-fixed-dim": "#e8c423",
+                    "on-secondary-fixed": "#001944",
+                    "tertiary-container": "#fed83a",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary": "#e1fdff",
+                    "on-tertiary-fixed": "#221b00",
+                    "on-secondary-container": "#002760",
+                    "background": "#131313",
+                    "surface-variant": "#353534",
+                    "outline-variant": "#3a494b",
+                    "secondary-fixed": "#d9e2ff",
+                    "surface": "#131313",
+                    "on-background": "#e5e2e1",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-tint": "#00dbe7",
+                    "secondary-fixed-dim": "#afc6ff",
+                    "on-tertiary-container": "#725e00",
+                    "secondary-container": "#548dff",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#00f2ff",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#b9cacb",
+                    "on-secondary": "#002d6d",
+                    "on-primary-container": "#006a71",
+                    "on-primary-fixed": "#002022",
+                    "tertiary-fixed": "#ffe173",
+                    "on-primary": "#00363a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "container-padding-desktop": "40px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "container-padding-mobile": "20px",
+                    "gutter": "24px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "mono-data": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-dim text-on-surface custom-scrollbar selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex items-center justify-between px-container-padding-mobile md:px-container-padding-desktop h-16">
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary-container active:scale-95 transition-transform" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-primary-container">EchoWave</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest hidden md:block">Settings Console</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-container/30">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-detail portrait of a professional sound engineer in a futuristic dark studio setting. The lighting is dominated by sharp electric cyan rim lights and deep obsidian shadows. The subject wears high-end carbon-fiber headphones, embodying a tech-savvy creator aesthetic in a premium glass-walled recording environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2qS1slo8yWeewfKTgNiQ6IgKAz76s1TWt8E6Qi0Cyay6_giU7a-Cn5AzCfEzMoKJWKkFN8MF1QECrX2-7Qy2elQZMWsu7rVbutmrTQwT9cVPU2dFalVWgMhP00DcHiqHr4dEBClOXR5rznlRuHb7iH3nsl3Tn2PwXXhcyU_wkBEBzjfl3hKjpnfAdVb53MyLlkJuSCnR-OlZzPSt5ZLVG8JrpNIqVuFaCIWCKTLCI_SQINt85pLQTu1waeEC3NUyrS-sT8_KtKqo"/>
+</div>
+</div>
+</header>
+<div class="flex h-screen pt-16">
+<!-- Navigation Drawer (Desktop Only) -->
+<aside class="hidden md:flex fixed left-0 z-[60] flex-col p-stack-md bg-surface-container-low/80 backdrop-blur-2xl rounded-r-xl h-[calc(100vh-64px)] w-72 border-r border-white/10 shadow-2xl shadow-primary-container/5">
+<div class="mb-stack-lg p-stack-md flex items-center gap-stack-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary-container">Professional Creator</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Pro Plan Active</span>
+</div>
+</div>
+<nav class="space-y-stack-sm flex-1">
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant hover:text-on-surface transition-all duration-300 ease-in-out hover:bg-surface-container-high/50 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="library_music">library_music</span>
+<span class="font-body-md text-body-md">Library</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant hover:text-on-surface transition-all duration-300 ease-in-out hover:bg-surface-container-high/50 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-md text-body-md">Transcripts</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant hover:text-on-surface transition-all duration-300 ease-in-out hover:bg-surface-container-high/50 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_done">cloud_done</span>
+<span class="font-body-md text-body-md">Cloud Sync</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md bg-secondary-container/30 text-primary-fixed-dim font-bold rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="p-stack-md border-t border-white/5">
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[49%]"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">24.5 GB / 50 GB</span>
+<span class="material-symbols-outlined text-error text-[16px]" data-icon="delete">delete</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto custom-scrollbar md:ml-72 pb-24 md:pb-8">
+
+<div class="max-w-4xl mx-auto px-container-padding-mobile md:px-gutter py-stack-lg space-y-gutter">
+<!-- Section: Appearance -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-stack-sm px-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="palette">palette</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Appearance</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Glass Card: Theme -->
+<div class="glass-panel p-gutter rounded-xl transition-all flex items-center justify-between">
+<div class="space-y-1">
+<p class="font-body-md text-body-md font-semibold text-on-surface">Dark Mode</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Optimize for low-light environments</p>
+</div>
+<input checked="" class="m3-switch" type="checkbox"/>
+</div>
+<div class="glass-panel p-gutter rounded-xl transition-all flex items-center justify-between">
+<div class="space-y-1">
+<p class="font-body-md text-body-md font-semibold text-on-surface">OLED Black</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">True blacks for energy saving</p>
+</div>
+<input class="m3-switch" type="checkbox"/>
+</div>
+</div>
+</section>
+<!-- Section: Recording Quality -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-stack-sm px-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="graphic_eq">graphic_eq</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recording Quality</h2>
+</div>
+<div class="glass-panel p-gutter rounded-xl">
+<div class="flex flex-col gap-gutter">
+<div class="grid grid-cols-3 gap-stack-md">
+<button class="group relative flex flex-col items-center justify-center gap-stack-sm p-stack-lg rounded-lg border border-white/5 hover:border-primary-container/40 transition-all bg-surface-container-low/40">
+<span class="font-mono-data text-mono-data text-on-surface-variant group-hover:text-primary-container">LOW</span>
+<span class="font-label-sm text-label-sm text-outline">128kbps</span>
+</button>
+<button class="group relative flex flex-col items-center justify-center gap-stack-sm p-stack-lg rounded-lg border-2 border-primary-container bg-primary-container/10 shadow-[0_0_20px_rgba(0,242,255,0.15)]">
+<span class="font-mono-data text-mono-data font-bold text-primary-container">MEDIUM</span>
+<span class="font-label-sm text-label-sm text-primary-container/80">256kbps</span>
+<span class="absolute -top-2 -right-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full">RECOMMENDED</span>
+</button>
+<button class="group relative flex flex-col items-center justify-center gap-stack-sm p-stack-lg rounded-lg border border-white/5 hover:border-primary-container/40 transition-all bg-surface-container-low/40">
+<span class="font-mono-data text-mono-data text-on-surface-variant group-hover:text-primary-container">HIGH</span>
+<span class="font-label-sm text-label-sm text-outline">512kbps</span>
+</button>
+</div>
+<div class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<label class="font-body-md text-body-md text-on-surface">Auto-Gain Control</label>
+<input checked="" class="m3-switch" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between">
+<label class="font-body-md text-body-md text-on-surface">Noise Suppression</label>
+<input checked="" class="m3-switch" type="checkbox"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Audio Format -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-stack-sm px-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="audio_file">audio_file</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Audio Format</h2>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<div class="p-gutter border-b border-white/5 hover:bg-surface-bright/10 transition-colors cursor-pointer group">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container font-mono-data font-bold">MP3</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Compressed Format</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Universal compatibility, small file size</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary-container" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+</div>
+<div class="p-gutter border-b border-white/5 bg-primary-container/5 transition-colors cursor-pointer group">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container font-mono-data font-bold">WAV</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Lossless Audio</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Best for editing and professional production</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="p-gutter hover:bg-surface-bright/10 transition-colors cursor-pointer group">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container font-mono-data font-bold">AAC</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">High Efficiency</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Superior quality to MP3 at similar bitrates</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary-container" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Support -->
+<div class="pt-stack-lg border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-stack-md pb-12">
+<div class="flex gap-stack-md">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-container transition-colors">Privacy Policy</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-container transition-colors">Terms of Service</button>
+</div>
+<span class="font-mono-data text-mono-data text-outline">v4.8.2-stable</span>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 rounded-t-xl bg-surface-container-lowest/40 backdrop-blur-md border-t border-white/5 shadow-[0_-4px_24px_rgba(0,242,255,0.05)] flex justify-around items-center h-20 px-8 pb-safe">
+<button class="text-outline-variant p-3 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<button class="text-outline-variant p-3 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="equalizer">equalizer</span>
+</button>
+<button class="text-outline-variant p-3 hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+</button>
+<button class="bg-primary-container text-on-primary-container rounded-full p-3 shadow-[0_0_15px_rgba(0,242,255,0.4)] active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction Logic
+        document.querySelectorAll('.m3-switch').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                // Add haptic feedback simulation or state management here
+                const parent = e.target.closest('.glass-panel');
+                if(e.target.checked) {
+                    parent.style.borderColor = 'rgba(0, 242, 255, 0.4)';
+                } else {
+                    parent.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }
+            });
+        });
+
+        // Hover Effect Enhancement for Desktop Nav
+        const navItems = document.querySelectorAll('aside nav a');
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+            });
+            item.addEventListener('mouseleave', () => {
+                if(!item.classList.contains('bg-secondary-container/30')) {
+                    item.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+                }
+            });
+        });
+    </script>
+</body></html>

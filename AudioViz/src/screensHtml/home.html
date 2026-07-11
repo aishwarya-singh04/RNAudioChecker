@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoWave - Record</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+        .ripple-effect {
+            animation: ripple 3s infinite cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .ripple-effect-delayed {
+            animation: ripple 3s infinite cubic-bezier(0.23, 1, 0.32, 1);
+            animation-delay: 1.5s;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: #0B0B0B;
+            overflow: hidden;
+        }
+        .waveform-bar {
+            transition: height 0.3s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353534",
+                        "tertiary": "#fff6e4",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-tertiary": "#3b2f00",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "primary-fixed": "#74f5ff",
+                        "outline": "#849495",
+                        "inverse-primary": "#00696f",
+                        "on-secondary-fixed-variant": "#00429a",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#afc6ff",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#e8c423",
+                        "on-secondary-fixed": "#001944",
+                        "tertiary-container": "#fed83a",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#e1fdff",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-secondary-container": "#002760",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#3a494b",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-tint": "#00dbe7",
+                        "secondary-fixed-dim": "#afc6ff",
+                        "on-tertiary-container": "#725e00",
+                        "secondary-container": "#548dff",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#00f2ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#b9cacb",
+                        "on-secondary": "#002d6d",
+                        "on-primary-container": "#006a71",
+                        "on-primary-fixed": "#002022",
+                        "tertiary-fixed": "#ffe173",
+                        "on-primary": "#00363a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-padding-desktop": "40px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "container-padding-mobile": "20px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex items-center justify-between px-container-padding-mobile h-16">
+<div class="flex items-center gap-stack-md">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a digital content creator in a dark obsidian-themed studio. The person has a friendly expression, wearing sleek dark tech-wear. The lighting is low-key with subtle electric cyan rim lighting that aligns with a futuristic minimalist aesthetic. The background features blurred audio hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe6FLfOOlYhkCWa-DstrIdY2uhgoFT6lQvCGUW-FVqClKOA8I3E4_Qc_76Gsj1mXumSG5MaiUqSWqngCJ81DbO0AaO59oufgt3kzn0GscmgmF-CTUB--kHBVuUAV794Qpfy81au8w3HNcpffIlS4ooefx3qg8OHTIocCb5nMKQVJpJwEBmvlrG91Awb3XZOrzq5vKrOCNxpUzA5mYNH9awzbpLq7w9yWHn5uHHVc4iGQcGoQrrDWT9muR-I_eFRrhaTlabOgEleks"/>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile tracking-tighter text-primary-container">EchoWave</h1>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-bright/20 transition-colors p-2 rounded-full active:scale-95 duration-200">
+            settings
+        </button>
+</header>
+<!-- Main Canvas -->
+<main class="relative min-h-screen flex flex-col items-center justify-center px-container-padding-mobile pt-16 pb-20 overflow-hidden">
+<!-- Atmospheric Background Element -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</div>
+<!-- Recording Hub -->
+<div class="relative z-10 flex flex-col items-center gap-stack-lg">
+<!-- Microphone Button Section -->
+<div class="relative flex items-center justify-center">
+<!-- Ripple Layers -->
+<div class="absolute w-48 h-48 rounded-full border-2 border-primary-container/20 ripple-effect"></div>
+<div class="absolute w-48 h-48 rounded-full border-2 border-primary-container/10 ripple-effect-delayed"></div>
+<!-- Main Button -->
+<button class="relative w-40 h-40 rounded-full bg-gradient-to-br from-primary-container to-secondary-container shadow-[0_0_50px_rgba(0,242,255,0.3)] flex items-center justify-center group active:scale-90 transition-all duration-300">
+<div class="absolute inset-0 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[64px] text-on-primary-container" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<!-- Labels -->
+<div class="text-center space-y-stack-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Tap to Record</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Record speech or music</p>
+</div>
+</div>
+<!-- Static Waveform Visualizer Placeholder -->
+<div class="absolute bottom-28 w-full max-w-2xl px-container-padding-mobile z-10">
+<div class="flex items-end justify-center gap-1 h-24 opacity-40">
+<!-- Generator loop for static bars -->
+<div class="waveform-bar w-1 bg-primary-container/40 rounded-full h-4"></div>
+<div class="waveform-bar w-1 bg-primary-container/50 rounded-full h-8"></div>
+<div class="waveform-bar w-1 bg-primary-container/60 rounded-full h-12"></div>
+<div class="waveform-bar w-1 bg-primary-container/70 rounded-full h-6"></div>
+<div class="waveform-bar w-1 bg-primary-container/80 rounded-full h-16"></div>
+<div class="waveform-bar w-1 bg-primary-container rounded-full h-10"></div>
+<div class="waveform-bar w-1 bg-primary-container/90 rounded-full h-20"></div>
+<div class="waveform-bar w-1 bg-primary-container/80 rounded-full h-14"></div>
+<div class="waveform-bar w-1 bg-primary-container/70 rounded-full h-24"></div>
+<div class="waveform-bar w-1 bg-primary-container/80 rounded-full h-12"></div>
+<div class="waveform-bar w-1 bg-primary-container/90 rounded-full h-18"></div>
+<div class="waveform-bar w-1 bg-primary-container rounded-full h-8"></div>
+<div class="waveform-bar w-1 bg-primary-container/90 rounded-full h-16"></div>
+<div class="waveform-bar w-1 bg-primary-container/80 rounded-full h-22"></div>
+<div class="waveform-bar w-1 bg-primary-container/70 rounded-full h-10"></div>
+<div class="waveform-bar w-1 bg-primary-container/60 rounded-full h-14"></div>
+<div class="waveform-bar w-1 bg-primary-container/50 rounded-full h-6"></div>
+<div class="waveform-bar w-1 bg-primary-container/40 rounded-full h-4"></div>
+</div>
+<!-- Technical Overlay -->
+<div class="mt-stack-md flex justify-between px-2 font-mono-data text-label-sm text-outline-variant uppercase tracking-widest">
+<span>0.00.00</span>
+<span>Ready to Capture</span>
+<span>PCM 48kHz</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-xl bg-surface-container-lowest/40 backdrop-blur-md border-t border-white/5 shadow-[0_-4px_24px_rgba(0,242,255,0.05)] flex justify-around items-center h-20 px-8 pb-safe">
+<!-- Record Tab (Active) -->
+<a class="flex flex-col items-center justify-center" href="#">
+<div class="bg-primary-container text-on-primary-container rounded-full p-3 shadow-[0_0_15px_rgba(0,242,255,0.4)] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</div>
+</a>
+<!-- Analyzer Tab -->
+<a class="flex flex-col items-center justify-center group" href="#">
+<div class="text-outline-variant p-3 group-hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">equalizer</span>
+</div>
+</a>
+<!-- Library Tab -->
+<a class="flex flex-col items-center justify-center group" href="#">
+<div class="text-outline-variant p-3 group-hover:text-primary transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">folder</span>
+</div>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        // Subtle hover movement for waveform
+        const bars = document.querySelectorAll('.waveform-bar');
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            bars.forEach((bar, index) => {
+                const shift = Math.sin(mouseX * 10 + index) * 5;
+                bar.style.transform = `translateY(${shift}px)`;
+            });
+        });
+
+        // Record Button Interaction
+        const recordBtn = document.querySelector('button.relative.w-40');
+        let isRecording = false;
+
+        recordBtn.addEventListener('click', () => {
+            isRecording = !isRecording;
+            if (isRecording) {
+                recordBtn.classList.remove('from-primary-container', 'to-secondary-container');
+                recordBtn.classList.add('bg-error', 'shadow-[0_0_50px_rgba(255,180,171,0.5)]');
+                document.querySelector('h2').innerText = 'Recording...';
+                document.querySelector('h2').classList.add('text-error');
+            } else {
+                recordBtn.classList.add('from-primary-container', 'to-secondary-container');
+                recordBtn.classList.remove('bg-error', 'shadow-[0_0_50px_rgba(255,180,171,0.5)]');
+                document.querySelector('h2').innerText = 'Tap to Record';
+                document.querySelector('h2').classList.remove('text-error');
+            }
+        });
+    </script>
+</body></html>

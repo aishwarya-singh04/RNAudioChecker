@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoWave - Microphone Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353534",
+                        "tertiary": "#fff6e4",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-tertiary": "#3b2f00",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "primary-fixed": "#74f5ff",
+                        "outline": "#849495",
+                        "inverse-primary": "#00696f",
+                        "on-secondary-fixed-variant": "#00429a",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#afc6ff",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#e8c423",
+                        "on-secondary-fixed": "#001944",
+                        "tertiary-container": "#fed83a",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#e1fdff",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-secondary-container": "#002760",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#3a494b",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-tint": "#00dbe7",
+                        "secondary-fixed-dim": "#afc6ff",
+                        "on-tertiary-container": "#725e00",
+                        "secondary-container": "#548dff",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#00f2ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#b9cacb",
+                        "on-secondary": "#002d6d",
+                        "on-primary-container": "#006a71",
+                        "on-primary-fixed": "#002022",
+                        "tertiary-fixed": "#ffe173",
+                        "on-primary": "#00363a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-padding-desktop": "40px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "container-padding-mobile": "20px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B0B0B;
+            color: #e5e2e1;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+        @keyframes pulse-cyan {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(0, 242, 255, 0.4); }
+        }
+        .animate-pulse-cyan {
+            animation: pulse-cyan 3s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md antialiased flex flex-col min-h-screen items-center justify-center relative">
+<!-- Atmospheric Background -->
+<div class="fixed inset-0 z-0">
+
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-container/5 via-transparent to-transparent"></div>
+</div>
+<!-- Main Permission Container -->
+<main class="relative z-10 w-full max-w-md px-container-padding-mobile md:px-0">
+<div class="glass-panel glow-cyan rounded-xl p-stack-lg flex flex-col items-center text-center space-y-stack-lg transition-all duration-500 scale-100 opacity-100">
+<!-- Stylized Illustration -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Background Pulse Rings -->
+<div class="absolute inset-0 bg-primary-container/10 rounded-full animate-ping duration-1000"></div>
+<div class="absolute inset-4 bg-primary-container/20 rounded-full animate-pulse-cyan"></div>
+<!-- Stylized Microphone Image -->
+<div class="relative z-20 w-32 h-32 rounded-full overflow-hidden border-2 border-primary-container/30">
+<img class="w-full h-full object-cover" data-alt="A high-end, 3D stylized professional condenser microphone floating in a dark obsidian space. The microphone is rendered with glossy black surfaces and vibrant electric cyan mesh accents that glow softly. The lighting is dramatic and technical, with thin cyan light trails swirling around the base to suggest audio data flow. The aesthetic is clean, modern, and futuristic, perfectly matching a professional creator tool palette of deep blacks and glowing cyans." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVGYaBJhWaWhf4FNPXZbXSx1CAADUWIpJX9hMEFlAOak4YfmUkwz7bjB4BASAxrkOG93A5ubewa2zh2uRotFtNH6kyMttbVBAZKz7z2dBeJ58H7HERVfuIOzG9sFe40De7-2suDNA6JEWvHPRnZzyhKRSOnRP8UeQGOsQNjcTgti7CpEIs3nteuSPtN_wH1ySqToPxyxTGGBSbSKRRAXwYskgWXVk-apL04lJexCq38gcBqCIXPi5_hsL0J3b3KGU55Cf104xpgAI"/>
+</div>
+</div>
+<!-- Content Area -->
+<div class="space-y-stack-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+                    Voice Activation
+                </h1>
+<p class="text-on-surface-variant max-w-[280px] mx-auto">
+                    We need microphone access to record audio.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col space-y-stack-md pt-stack-sm">
+<!-- Primary Action -->
+<button class="w-full py-4 px-6 bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:shadow-[0_0_30px_rgba(0,242,255,0.5)] active:scale-[0.98] transition-all duration-200">
+                    Grant Permission
+                </button>
+<!-- Secondary Action -->
+<button class="w-full py-2 text-on-surface-variant hover:text-on-surface font-medium transition-colors duration-200">
+                    Maybe Later
+                </button>
+</div>
+<!-- Technical Detail (Visual Polish) -->
+<div class="pt-stack-md flex items-center justify-center space-x-2">
+<div class="h-1 w-1 rounded-full bg-primary-container/40"></div>
+<div class="h-1 w-1 rounded-full bg-primary-container/60"></div>
+<div class="h-1 w-8 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,242,255,0.6)]"></div>
+<div class="h-1 w-1 rounded-full bg-primary-container/60"></div>
+<div class="h-1 w-1 rounded-full bg-primary-container/40"></div>
+</div>
+</div>
+</main>
+<!-- Branding Anchor (Bottom) -->
+<footer class="fixed bottom-10 z-10 flex flex-col items-center opacity-40">
+<span class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary-container">EchoWave</span>
+<div class="flex items-center space-x-2 mt-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Secure Audio Engine</span>
+</div>
+</footer>
+<!-- Interactive Micro-Interactions -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.glass-panel');
+            
+            // Subtle parallax effect on mouse move
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            // Button interaction feedback
+            const primaryBtn = document.querySelector('button.bg-primary-container');
+            primaryBtn.addEventListener('click', () => {
+                primaryBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span>';
+                setTimeout(() => {
+                    primaryBtn.innerHTML = 'Requesting...';
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

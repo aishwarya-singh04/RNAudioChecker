@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoWave | History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 242, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.05);
+        }
+        .waveform-bar {
+            animation: pulse-height 2s ease-in-out infinite;
+        }
+        @keyframes pulse-height {
+            0%, 100% { height: 20%; }
+            50% { height: 80%; }
+        }
+        .swipe-indicator {
+            background: linear-gradient(90deg, transparent, rgba(255, 180, 171, 0.1));
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353534",
+                        "tertiary": "#fff6e4",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-tertiary": "#3b2f00",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "primary-fixed": "#74f5ff",
+                        "outline": "#849495",
+                        "inverse-primary": "#00696f",
+                        "on-secondary-fixed-variant": "#00429a",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#afc6ff",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#e8c423",
+                        "on-secondary-fixed": "#001944",
+                        "tertiary-container": "#fed83a",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#e1fdff",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-secondary-container": "#002760",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#3a494b",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-tint": "#00dbe7",
+                        "secondary-fixed-dim": "#afc6ff",
+                        "on-tertiary-container": "#725e00",
+                        "secondary-container": "#548dff",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#00f2ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#b9cacb",
+                        "on-secondary": "#002d6d",
+                        "on-primary-container": "#006a71",
+                        "on-primary-fixed": "#002022",
+                        "tertiary-fixed": "#ffe173",
+                        "on-primary": "#00363a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-padding-desktop": "40px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "container-padding-mobile": "20px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-container/30 selection:text-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container/60 backdrop-blur-xl border-b border-white/10 flex items-center justify-between px-container-padding-mobile h-16 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A professional high-fidelity studio headshot of a creative technologist with subtle teal rim lighting against an obsidian background. The image has a clean, minimalist aesthetic with sharp focus and cinematic depth, perfectly aligning with a premium audio application brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-DXlPnlM_cRDFFOQJWrwCryt9AxZ2GuXtYK-ZCLX7wFPBZ2UsKtRmzT6MyFeXlNoQhME0goysifdYWKOdf4CIeN8uC7D7KYQXoqkNOOIBeMSMPp-fdLX2YmB0ukMDFnSSE1nHhMdgbKfE4l9iffU2abbvH4MYF8zBg5omvnEHhIzKICBNJ0VxGaUeTZs4L9CnwtqjD4u0IdmHqJJke9aFprPMKOBb93yWDgaTRO4WURwQRgnd3AO42-8AtKHEdb4K-RZRNiVsndc"/>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile tracking-tighter text-primary-container">EchoWave</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-bright/20 transition-colors p-2 rounded-full active:scale-95 duration-200">settings</button>
+</div>
+</header>
+<main class="pt-24 pb-28 px-container-padding-mobile max-w-3xl mx-auto">
+<!-- Search Area -->
+<div class="mb-stack-lg sticky top-20 z-40">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant group-focus-within:text-primary-container transition-colors">search</span>
+</div>
+<input class="w-full bg-surface-container-low/80 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container/30 focus:border-primary-container transition-all text-on-surface placeholder:text-outline-variant" placeholder="Search recordings..." type="text"/>
+</div>
+</div>
+<!-- History List -->
+<div class="space-y-stack-md" id="recordings-list">
+<!-- Recording Card Generator -->
+<script>
+                const recordings = [
+                    { title: "Guitar Practice", date: "Oct 24, 2023", duration: "12:45", id: 1 },
+                    { title: "Morning Meeting", date: "Oct 24, 2023", duration: "45:20", id: 2 },
+                    { title: "Podcast Draft Ep. 4", date: "Oct 23, 2023", duration: "28:10", id: 3 },
+                    { title: "Humming Melody Idea", date: "Oct 23, 2023", duration: "0:54", id: 4 },
+                    { title: "Piano Improvisation", date: "Oct 22, 2023", duration: "05:12", id: 5 },
+                    { title: "Client Feedback Call", date: "Oct 21, 2023", duration: "18:30", id: 6 },
+                    { title: "Ambient Rain Audio", date: "Oct 20, 2023", duration: "60:00", id: 7 },
+                    { title: "Interview with Alex", date: "Oct 20, 2023", duration: "32:15", id: 8 },
+                    { title: "Daily Standup", date: "Oct 19, 2023", duration: "10:05", id: 9 },
+                    { title: "Song Lyrics Memo", date: "Oct 18, 2023", duration: "02:40", id: 10 },
+                    { title: "Workshop Session", date: "Oct 18, 2023", duration: "120:00", id: 11 },
+                    { title: "Coffee Shop Ambience", date: "Oct 17, 2023", duration: "15:00", id: 12 }
+                ];
+
+                document.write(recordings.map(rec => `
+                    <div class="relative overflow-hidden rounded-xl group" data-id="${rec.id}">
+                        <!-- Swipe Delete Action Background -->
+                        <div class="absolute inset-0 swipe-indicator flex items-center justify-end px-6 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-error">delete</span>
+                        </div>
+                        
+                        <!-- Main Card -->
+                        <div class="glass-card flex items-center p-4 gap-4 cursor-pointer active:scale-[0.98] transition-transform relative z-10">
+                            <!-- Mini Waveform Thumbnail -->
+                            <div class="w-16 h-16 rounded-lg bg-surface-container-highest/50 flex items-end justify-center gap-0.5 overflow-hidden p-2 border border-white/5">
+                                ${Array.from({length: 8}).map((_, i) => `
+                                    <div class="waveform-bar w-1 bg-primary-container/40 rounded-full" style="height: ${Math.random() * 60 + 20}%; animation-delay: ${i * 0.1}s"></div>
+                                `).join('')}
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="flex-1 min-w-0">
+                                <h3 class="font-headline-md text-body-md text-on-surface truncate">${rec.title}</h3>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                        ${rec.date}
+                                    </span>
+                                    <span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">timer</span>
+                                        ${rec.duration}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Play Button -->
+                            <button class="w-10 h-10 rounded-full bg-primary-container/10 border border-primary-container/20 flex items-center justify-center hover:bg-primary-container/20 transition-all text-primary-container">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join(''));
+            </script>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest/40 backdrop-blur-md rounded-t-xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,242,255,0.05)] h-20 px-8 pb-safe flex justify-around items-center">
+<a class="text-outline-variant p-3 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">mic</span>
+</a>
+<a class="text-outline-variant p-3 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">equalizer</span>
+</a>
+<a class="bg-primary-container text-on-primary-container rounded-full p-3 shadow-[0_0_15px_rgba(0,242,255,0.4)] active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">folder</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            
+            cards.forEach(card => {
+                let startX;
+                let currentX;
+                let isDragging = false;
+
+                card.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    card.style.transition = 'none';
+                });
+
+                card.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                    const diff = currentX - startX;
+                    
+                    if (diff < 0) { // Swiping left
+                        const transform = Math.max(diff, -100);
+                        card.style.transform = `translateX(${transform}px)`;
+                        
+                        // Increase background visibility based on swipe
+                        const bgIndicator = card.parentElement.querySelector('.swipe-indicator');
+                        if (bgIndicator) {
+                            bgIndicator.style.opacity = Math.abs(transform) / 100;
+                        }
+                    }
+                });
+
+                card.addEventListener('touchend', (e) => {
+                    isDragging = false;
+                    card.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                    
+                    const diff = currentX - startX;
+                    if (diff < -80) {
+                        card.style.transform = `translateX(-100%)`;
+                        setTimeout(() => {
+                            card.parentElement.style.maxHeight = '0px';
+                            card.parentElement.style.opacity = '0';
+                            card.parentElement.style.marginBottom = '0px';
+                            card.parentElement.style.padding = '0px';
+                            setTimeout(() => card.parentElement.remove(), 300);
+                        }, 200);
+                    } else {
+                        card.style.transform = 'translateX(0px)';
+                    }
+                });
+            });
+
+            // Smooth appear animation for cards
+            const recordingItems = document.querySelectorAll('[data-id]');
+            recordingItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+    </script>
+</body></html>

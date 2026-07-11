@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoWave - Recording</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "surface-bright": "#3a3939",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#353534",
+                    "tertiary": "#fff6e4",
+                    "primary-fixed-dim": "#00dbe7",
+                    "on-tertiary": "#3b2f00",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#554500",
+                    "primary-fixed": "#74f5ff",
+                    "outline": "#849495",
+                    "inverse-primary": "#00696f",
+                    "on-secondary-fixed-variant": "#00429a",
+                    "on-surface": "#e5e2e1",
+                    "secondary": "#afc6ff",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-container": "#201f1f",
+                    "tertiary-fixed-dim": "#e8c423",
+                    "on-secondary-fixed": "#001944",
+                    "tertiary-container": "#fed83a",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary": "#e1fdff",
+                    "on-tertiary-fixed": "#221b00",
+                    "on-secondary-container": "#002760",
+                    "background": "#131313",
+                    "surface-variant": "#353534",
+                    "outline-variant": "#3a494b",
+                    "secondary-fixed": "#d9e2ff",
+                    "surface": "#131313",
+                    "on-background": "#e5e2e1",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-tint": "#00dbe7",
+                    "secondary-fixed-dim": "#afc6ff",
+                    "on-tertiary-container": "#725e00",
+                    "secondary-container": "#548dff",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#00f2ff",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#b9cacb",
+                    "on-secondary": "#002d6d",
+                    "on-primary-container": "#006a71",
+                    "on-primary-fixed": "#002022",
+                    "tertiary-fixed": "#ffe173",
+                    "on-primary": "#00363a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "container-padding-desktop": "40px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "container-padding-mobile": "20px",
+                    "gutter": "24px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "mono-data": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+        .animate-pulse-red {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes subtle-glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+            50% { text-shadow: 0 0 40px rgba(0, 242, 255, 0.6); }
+        }
+        .timer-glow {
+            animation: subtle-glow 3s ease-in-out infinite;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-dim text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex items-center justify-between px-container-padding-mobile h-16">
+<div class="flex items-center gap-stack-md">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up high-resolution profile portrait of a modern digital creator. The person has a focused expression, wearing sleek black professional headphones. The lighting is dramatic, with electric cyan rim lighting against a deep obsidian background, creating a high-tech, futuristic professional aesthetic that matches the EchoWave brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnwKmCk39B1ePGj4zkd-iSU7GxcoBDv8ell4HyXGhhQqyURYqCBk7rcTCynFxlkf0Jgxw2QMNG-K16VVvcSLMDKQXv8wFAcxhWaOB-NsvjeBNLvKmuU4OT1cCm-LwG7z_8F3dIs2GBjbNn6sY2p1y2WFjARBk0Y-oJVEUFvezdxdt6N550QgXe320uwWqQg7vnvkgmzj6hs9VwncJAHvt-quNjHDBYSKNYEXvFwRRt3pZEAqHbkZY6BeeMSfr1ROigAhaZrzOXDuA"/>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile tracking-tighter text-primary-container">EchoWave</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-bright/20 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary-container">settings</span>
+</button>
+</header>
+<!-- Main Canvas: Live Spectrum Background -->
+<main class="relative flex-grow flex flex-col items-center justify-center overflow-hidden pt-16 pb-32">
+<!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full z-0 opacity-80" -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-80" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+varying vec2 v_texCoord;
+
+float hash(float n) { return fract(sin(n) * 43758.5453123); }
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec3 color = vec3(0.043, 0.043, 0.043); // #0B0B0B
+    
+    // Create animated spectrum bars
+    float barWidth = 0.02;
+    float barSpacing = 0.01;
+    float x = uv.x * 20.0;
+    float barIndex = floor(x);
+    float barPos = fract(x);
+    
+    if (barPos < 0.7) {
+        float height = 0.2 + 0.5 * hash(barIndex) + 0.3 * sin(u_time * 2.0 + barIndex * 0.5);
+        float dist = abs(uv.y - 0.5);
+        if (dist < height * 0.5) {
+            float glow = 0.01 / (dist + 0.01);
+            vec3 accent = vec3(0.0, 0.95, 1.0); // Electric Blue
+            color = mix(color, accent, glow * (1.0 - dist/height));
+        }
+    }
+    
+    gl_FragColor = vec4(color, 1.0);
+}
+`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<!-- Grid Overlay for Technical Precision -->
+<div class="absolute inset-0 pointer-events-none opacity-10 z-10" style="background-image: radial-gradient(circle, #00f2ff 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+<!-- Recording HUD -->
+<div class="relative z-20 flex flex-col items-center gap-stack-lg w-full px-container-padding-mobile">
+<!-- Status -->
+<div class="flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-error animate-pulse-red shadow-[0_0_10px_rgba(255,180,171,0.5)]"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Recording...</span>
+</div>
+<!-- Timer Display -->
+<div class="flex flex-col items-center">
+<div class="font-display-lg text-[80px] md:text-[120px] font-bold text-primary-container tracking-tighter timer-glow leading-none" id="timer">
+                    00:00
+                </div>
+<div class="font-mono-data text-mono-data text-outline-variant mt-2">
+                    48kHz / 24-bit PCM
+                </div>
+</div>
+<!-- Mini Spectrum visualization component (UI only) -->
+<div class="flex items-end justify-center gap-1 h-12 w-48 mt-8">
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_1.2s_infinite]" style="height: 60%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_0.8s_infinite]" style="height: 40%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_1.5s_infinite]" style="height: 80%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_0.6s_infinite]" style="height: 30%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_1.1s_infinite]" style="height: 50%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_0.9s_infinite]" style="height: 70%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_1.4s_infinite]" style="height: 45%"></div>
+<div class="w-1.5 bg-primary-container rounded-full animate-[bounce_0.7s_infinite]" style="height: 65%"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Controls Area -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest/40 backdrop-blur-md rounded-t-xl h-32 px-container-padding-mobile pb-safe flex items-center justify-center border-t border-white/5">
+<div class="flex items-center gap-8 md:gap-16">
+<!-- Discard Button -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-14 h-14 flex items-center justify-center rounded-full bg-surface-container-high/50 border border-white/10 hover:bg-error-container/20 hover:text-error transition-all active:scale-90 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-error">delete</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline-variant">Discard</span>
+</div>
+<!-- Stop/Save Button (Main Action) -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-20 h-20 flex items-center justify-center rounded-full bg-primary-container text-on-primary-container shadow-[0_0_30px_rgba(0,242,255,0.4)] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">stop</span>
+</button>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">Stop &amp; Save</span>
+</div>
+<!-- Pause/Resume Button -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-14 h-14 flex items-center justify-center rounded-full bg-surface-container-high/50 border border-white/10 hover:bg-primary-container/20 hover:text-primary-container transition-all active:scale-90 group" id="pause-btn">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-container">pause</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline-variant">Pause</span>
+</div>
+</div>
+</footer>
+<!-- Background Decorative elements -->
+<div class="fixed top-1/4 -left-32 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-1/4 -right-32 w-96 h-96 bg-secondary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<script>
+        // Simple Timer Logic
+        let seconds = 0;
+        let isPaused = false;
+        const timerElement = document.getElementById('timer');
+        const pauseBtn = document.getElementById('pause-btn');
+        const pauseIcon = pauseBtn.querySelector('.material-symbols-outlined');
+
+        setInterval(() => {
+            if (!isPaused) {
+                seconds++;
+                const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+                const secs = (seconds % 60).toString().padStart(2, '0');
+                timerElement.innerText = `${mins}:${secs}`;
+            }
+        }, 1000);
+
+        pauseBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            if (isPaused) {
+                pauseIcon.innerText = 'play_arrow';
+                timerElement.classList.add('opacity-50');
+            } else {
+                pauseIcon.innerText = 'pause';
+                timerElement.classList.remove('opacity-50');
+            }
+        });
+
+        // Micro-interaction: Waveform reactive simulator
+        const bars = document.querySelectorAll('.animate-\\[bounce_');
+        bars.forEach(bar => {
+            const randomDelay = Math.random() * 2;
+            bar.style.animationDelay = `${randomDelay}s`;
+        });
+    </script>
+</body></html>
