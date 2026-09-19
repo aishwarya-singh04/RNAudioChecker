@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   qualityActive: {
     borderColor: EW.primaryContainer,
     borderWidth: 1.5,
-    backgroundColor: 'rgba(0,242,255,0.08)',
+    backgroundColor: 'rgba(252,132,172,0.08)',
   },
   toggleRow: {
     flexDirection: 'row',

@@ -19,7 +19,7 @@ import { EW, EWRadius, EWSpacing, cyanGlow } from '@/constants/echowave-theme';
 import { useAudioSpectrum } from '@/hooks/use-audio-spectrum';
 import { useRecordings } from '@/store/recordings-store';
 
-const CYAN_GRADIENT = ['#00696f', '#00dbe7', '#00f2ff', '#74f5ff', '#00f2ff', '#00dbe7', '#00696f'];
+const ACCENT_GRADIENT = ['#5a2048', '#f06098', '#fc84ac', '#ffb3cd', '#fc84ac', '#f06098', '#5a2048'];
 
 function formatTimer(totalSec: number): string {
   const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
@@ -159,7 +159,7 @@ export default function HomeScreen() {
           bars={bars}
           width={spectrumWidth}
           height={96}
-          colors={CYAN_GRADIENT}
+          colors={ACCENT_GRADIENT}
           gap={2}
         />
         <View style={styles.techOverlay}>
@@ -277,10 +277,10 @@ const styles = StyleSheet.create({
     width: 360,
     height: 360,
     borderRadius: 360,
-    backgroundColor: 'rgba(0,242,255,0.06)',
+    backgroundColor: 'rgba(252,132,172,0.06)',
   },
   glowBlobActive: {
-    backgroundColor: 'rgba(0,242,255,0.12)',
+    backgroundColor: 'rgba(252,132,172,0.12)',
   },
   center: {
     flex: 1,
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     height: 176,
     borderRadius: EWRadius.full,
     borderWidth: 2,
-    borderColor: 'rgba(0,242,255,0.4)',
+    borderColor: 'rgba(252,132,172,0.4)',
   },
   micButton: {
     width: 160,
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     lineHeight: 82,
     fontWeight: '700',
     letterSpacing: -2,
-    textShadowColor: 'rgba(0,242,255,0.4)',
+    textShadowColor: 'rgba(252,132,172,0.4)',
     textShadowRadius: 30,
   },
   statusPill: {

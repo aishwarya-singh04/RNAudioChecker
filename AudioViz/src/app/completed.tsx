@@ -199,9 +199,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: EWSpacing.stackSm,
     paddingVertical: 4,
     borderRadius: EWRadius.full,
-    backgroundColor: 'rgba(0,242,255,0.1)',
+    backgroundColor: 'rgba(252,132,172,0.1)',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(0,242,255,0.2)',
+    borderColor: 'rgba(252,132,172,0.2)',
   },
   titleBlock: {
     gap: 4,

@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 400,
     borderRadius: 400,
-    backgroundColor: 'rgba(0,242,255,0.05)',
+    backgroundColor: 'rgba(252,132,172,0.05)',
   },
   body: { width: '100%', paddingHorizontal: EWSpacing.screen, maxWidth: 440 },
   panel: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     borderRadius: EWRadius.full,
-    backgroundColor: 'rgba(0,242,255,0.1)',
+    backgroundColor: 'rgba(252,132,172,0.1)',
   },
   micCircle: {
     width: 120,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: EW.surfaceContainerHigh,
     borderWidth: 2,
-    borderColor: 'rgba(0,242,255,0.3)',
+    borderColor: 'rgba(252,132,172,0.3)',
   },
   textBlock: { alignItems: 'center', gap: EWSpacing.stackSm },
   subtitle: { textAlign: 'center', maxWidth: 280 },

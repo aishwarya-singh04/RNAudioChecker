@@ -1,15 +1,18 @@
 import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useCallback, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { AnimatedSplashOverlay } from '@/components/animated-splash';
 import { DrawerProvider } from '@/components/ew/drawer';
 import { EW } from '@/constants/echowave-theme';
 import { RecordingsProvider } from '@/store/recordings-store';
 
 SplashScreen.preventAutoHideAsync();
+// Instant native handoff — no fade that reveals a second splash underneath.
+SplashScreen.setOptions({ duration: 0, fade: false });
 
 const echoWaveNavTheme = {
   ...DarkTheme,
@@ -24,13 +27,12 @@ const echoWaveNavTheme = {
 };
 
 export default function RootLayout() {
-  useEffect(() => {
-    SplashScreen.hideAsync();
-  }, []);
+  const [showSplash, setShowSplash] = useState(true);
+  const onSplashFinish = useCallback(() => setShowSplash(false), []);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: EW.bg }}>
+      <SafeAreaProvider style={{ flex: 1, backgroundColor: EW.bg }}>
         <ThemeProvider value={echoWaveNavTheme}>
           <RecordingsProvider>
             <DrawerProvider>
@@ -46,6 +48,7 @@ export default function RootLayout() {
                 <Stack.Screen name="settings" options={{ animation: 'slide_from_right' }} />
                 <Stack.Screen name="permission" options={{ presentation: 'modal' }} />
               </Stack>
+              {showSplash ? <AnimatedSplashOverlay onFinish={onSplashFinish} /> : null}
               <StatusBar style="light" />
             </DrawerProvider>
           </RecordingsProvider>

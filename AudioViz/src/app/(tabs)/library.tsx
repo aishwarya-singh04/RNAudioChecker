@@ -359,9 +359,9 @@ const styles = StyleSheet.create({
     borderRadius: EWRadius.full,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,242,255,0.1)',
+    backgroundColor: 'rgba(252,132,172,0.1)',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(0,242,255,0.2)',
+    borderColor: 'rgba(252,132,172,0.2)',
   },
   swipeActions: {
     flexDirection: 'row',
@@ -393,9 +393,9 @@ const styles = StyleSheet.create({
     borderRadius: EWRadius.full,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,242,255,0.06)',
+    backgroundColor: 'rgba(252,132,172,0.06)',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(0,242,255,0.2)',
+    borderColor: 'rgba(252,132,172,0.2)',
     marginBottom: EWSpacing.stackMd,
   },
   emptyText: {
