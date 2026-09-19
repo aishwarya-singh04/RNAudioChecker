@@ -1,4 +1,4 @@
-# AudioViz 🎙️
+# AudioViz 🎼
 
 AudioViz (a.k.a. EchoWave) is a cross-platform [Expo](https://expo.dev) / React Native app for **recording audio and visualizing sound in real time**. It draws a live frequency spectrum while you record, lets you analyze ambient sound, and keeps a searchable library of your recordings on-device.
 
