@@ -105,9 +105,7 @@ export default function SettingsScreen() {
         <Section icon="tune" title="Additional">
           <GlassView style={styles.formatCard}>
             <LinkRow icon="sd-storage" label="Storage Location" value="Device" divider />
-            <LinkRow icon="lock" label="Privacy" divider />
-            <LinkRow icon="info-outline" label="About" divider />
-            <LinkRow icon="verified-user" label="App Version" value="4.8.2" />
+            <LinkRow icon="verified-user" label="App Version" value="1.0.0" />
           </GlassView>
         </Section>
       </ScrollView>

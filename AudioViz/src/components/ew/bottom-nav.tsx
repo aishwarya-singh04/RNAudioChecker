@@ -6,8 +6,8 @@ import { EW, EWRadius, EWSpacing, cyanGlow } from '@/constants/echowave-theme';
 import { EWIcon, type EWIconName } from '@/components/ew/icon';
 
 const ICONS: Record<string, EWIconName> = {
-  index: 'mic',
   analyzer: 'equalizer',
+  index: 'mic',
   library: 'folder',
 };
 

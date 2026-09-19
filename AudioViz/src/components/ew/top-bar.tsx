@@ -18,7 +18,7 @@ export type TopBarProps = {
   showSettings?: boolean;
 };
 
-export function TopBar({ variant = 'main', title = 'EchoWave', showSettings = true }: TopBarProps) {
+export function TopBar({ variant = 'main', title = 'Echo Wave', showSettings = true }: TopBarProps) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const drawer = useDrawer();
@@ -46,19 +46,11 @@ export function TopBar({ variant = 'main', title = 'EchoWave', showSettings = tr
           )}
           <EWText
             variant={variant === 'back' ? 'headlineMd' : 'displayLgMobile'}
+            style={{fontSize:28}}
             color={EW.primaryContainer}>
             {title}
           </EWText>
         </View>
-
-        {showSettings ? (
-          <Pressable
-            onPress={() => router.push('/settings')}
-            hitSlop={12}
-            style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}>
-            <EWIcon name="settings" color={EW.primaryContainer} />
-          </Pressable>
-        ) : null}
       </View>
     </View>
   );
@@ -91,7 +83,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: EWRadius.full,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 2,
     borderColor: EW.glassBorder,
   },
   iconBtn: {

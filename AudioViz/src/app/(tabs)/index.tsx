@@ -97,11 +97,6 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <TopBar />
-
-      <View style={styles.atmosphere} pointerEvents="none">
-        <View style={[styles.glowBlob, isActive && styles.glowBlobActive]} />
-      </View>
-
       <View style={styles.center}>
         {isActive ? (
           <View style={styles.recordingHud}>
@@ -272,15 +267,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  glowBlob: {
-    width: 360,
-    height: 360,
-    borderRadius: 360,
-    backgroundColor: 'rgba(252,132,172,0.06)',
-  },
-  glowBlobActive: {
-    backgroundColor: 'rgba(252,132,172,0.12)',
   },
   center: {
     flex: 1,

@@ -11,8 +11,8 @@ export default function TabsLayout() {
         headerShown: false,
         sceneStyle: { backgroundColor: EW.bg },
       }}>
-      <Tabs.Screen name="index" options={{ title: 'Record' }} />
       <Tabs.Screen name="analyzer" options={{ title: 'Analyzer' }} />
+      <Tabs.Screen name="index" options={{ title: 'Record' }} />
       <Tabs.Screen name="library" options={{ title: 'Library' }} />
     </Tabs>
   );

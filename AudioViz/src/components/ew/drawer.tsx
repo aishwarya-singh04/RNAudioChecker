@@ -42,8 +42,6 @@ const MENU: MenuItem[] = [
   { icon: 'folder', label: 'History', route: '/library' },
   { icon: 'favorite', label: 'Favorites', route: '/library' },
   { icon: 'settings', label: 'Settings', route: '/settings' },
-  { icon: 'help-outline', label: 'Help' },
-  { icon: 'info-outline', label: 'About' },
   { icon: 'logout', label: 'Logout' },
 ];
 
