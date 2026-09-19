@@ -6,8 +6,8 @@
     {
       "layers" : [
         {
-          "image-name" : "waves.png",
-          "name" : "waves",
+          "image-name" : "music-note.png",
+          "name" : "music-note",
           "position" : {
             "scale" : 1,
             "translation-in-points" : [0, 0]
