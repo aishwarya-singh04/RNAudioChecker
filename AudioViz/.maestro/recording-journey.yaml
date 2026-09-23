@@ -1,0 +1,138 @@
+appId: com.anonymous.AudioViz
+name: Recording journey
+tags:
+  - recording
+  - smoke
+---
+# App opens on Analyzer. Splash unmounts after ~1.5s.
+- launchApp:
+    clearState: true
+    stopApp: true
+    permissions:
+      microphone: allow
+
+- extendedWaitUntil:
+    visible:
+      id: tab-record
+    timeout: 20000
+
+- tapOn:
+    id: tab-record
+    label: Open the Record tab
+
+- extendedWaitUntil:
+    visible: Tap to Record
+    timeout: 10000
+
+- assertVisible: Record speech or music
+- assertVisible: Ready to capture
+
+- tapOn:
+    id: start-recording
+    label: Start recording
+
+# react-native-audio-api may still raise the system prompt.
+- runFlow:
+    when:
+      visible: Allow
+    commands:
+      - tapOn: Allow
+
+- runFlow:
+    when:
+      visible: OK
+    commands:
+      - tapOn: OK
+
+- extendedWaitUntil:
+    visible: Recording…
+    timeout: 10000
+
+- assertVisible: Listening…
+- assertVisible: "48kHz · M4A"
+- assertVisible: Discard
+- assertVisible: Pause
+- assertVisible: Stop & Save
+
+# The clock only shows each second briefly, so match any time from 00:02 up.
+- extendedWaitUntil:
+    visible: "00:0[2-9]|00:[1-5][0-9]"
+    timeout: 20000
+    label: Let the take run for at least two seconds
+
+- tapOn:
+    id: pause-resume
+    label: Pause the recording
+
+- assertVisible: Paused
+- assertVisible: Resume
+- assertNotVisible: Recording…
+
+- tapOn:
+    id: pause-resume
+    label: Resume the recording
+
+- extendedWaitUntil:
+    visible: Recording…
+    timeout: 5000
+
+- assertVisible: Listening…
+- assertVisible: Pause
+- assertNotVisible: Resume
+
+- tapOn:
+    id: stop-and-save
+    label: Stop and save
+
+- extendedWaitUntil:
+    visible: Recording Saved
+    timeout: 15000
+
+- assertVisible: Saved
+- assertVisible: New Recording
+- assertVisible: Duration
+- assertVisible: M4A
+# The play control's accessibility name includes the icon, so match the label with a regex.
+- assertVisible: ".*Play"
+
+- tapOn: ".*Play"
+
+- extendedWaitUntil:
+    visible: ".*Pause"
+    timeout: 10000
+    label: Wait until playback starts
+
+- tapOn: ".*Pause"
+- assertVisible: ".*Play"
+
+- tapOn: ".*Rename"
+- extendedWaitUntil:
+    visible: "Rename recording.*"
+    timeout: 8000
+
+# First time the simulator keyboard appears it shows the QuickPath coach mark.
+- runFlow:
+    when:
+      visible: Continue
+    commands:
+      - tapOn: Continue
+
+- tapOn:
+    id: rename-input
+- eraseText
+- inputText: Voice memo
+- tapOn:
+    id: rename-save
+
+- assertVisible: Voice memo
+- assertNotVisible: "Rename recording.*"
+
+- tapOn: ".*Done"
+
+# The library card exposes the title together with the date and duration.
+- extendedWaitUntil:
+    visible: "Voice memo.*"
+    timeout: 10000
+
+- assertVisible: EchoWave
+- assertVisible: ".*Favorites"

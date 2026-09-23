@@ -11,6 +11,12 @@ const ICONS: Record<string, EWIconName> = {
   library: 'folder',
 };
 
+const LABELS: Record<string, string> = {
+  analyzer: 'Analyzer',
+  index: 'Record',
+  library: 'Library',
+};
+
 /** Structural subset of react-navigation's BottomTabBarProps that we consume. */
 export type BottomNavProps = {
   state: {
@@ -51,6 +57,10 @@ export function BottomNav({ state, navigation }: BottomNavProps) {
           return (
             <Pressable
               key={route.key}
+              testID={`tab-${route.name === 'index' ? 'record' : route.name}`}
+              accessibilityRole="tab"
+              accessibilityLabel={LABELS[route.name] ?? route.name}
+              accessibilityState={{ selected: focused }}
               onPress={onPress}
               hitSlop={8}
               style={({ pressed }) => [styles.item, pressed && styles.pressed]}>

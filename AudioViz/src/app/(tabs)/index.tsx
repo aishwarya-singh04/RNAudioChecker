@@ -113,6 +113,9 @@ export default function HomeScreen() {
             <RippleRing delay={0} />
             <RippleRing delay={1500} />
             <Pressable
+              testID="start-recording"
+              accessibilityRole="button"
+              accessibilityLabel="Start recording"
               onPress={onStart}
               style={({ pressed }) => [styles.micButton, pressed && styles.micPressed]}>
               <EWIcon name="mic" size={64} color={EW.onPrimaryContainer} />
@@ -138,9 +141,23 @@ export default function HomeScreen() {
 
       {isActive ? (
         <View style={styles.controls}>
-          <ControlButton icon="delete" label="Discard" tone="danger" onPress={onDiscard} />
-          <ControlButton icon="stop" label="Stop & Save" tone="primary" large onPress={onStop} />
           <ControlButton
+            testID="discard-recording"
+            icon="delete"
+            label="Discard"
+            tone="danger"
+            onPress={onDiscard}
+          />
+          <ControlButton
+            testID="stop-and-save"
+            icon="stop"
+            label="Stop & Save"
+            tone="primary"
+            large
+            onPress={onStop}
+          />
+          <ControlButton
+            testID="pause-resume"
             icon={isPaused ? 'play-arrow' : 'pause'}
             label={isPaused ? 'Resume' : 'Pause'}
             tone="neutral"
@@ -192,12 +209,14 @@ function StatusPill({ paused }: { paused: boolean }) {
 }
 
 function ControlButton({
+  testID,
   icon,
   label,
   onPress,
   tone,
   large,
 }: {
+  testID: string;
   icon: EWIconName;
   label: string;
   onPress: () => void;
@@ -217,6 +236,9 @@ function ControlButton({
   return (
     <View style={styles.controlItem}>
       <Pressable
+        testID={testID}
+        accessibilityRole="button"
+        accessibilityLabel={label}
         onPress={onPress}
         style={({ pressed }) => [
           styles.controlBtn,

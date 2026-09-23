@@ -38,13 +38,14 @@ export function RenameDialog({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      <Pressable style={styles.backdrop} onPress={onCancel}>
+      <Pressable accessible={false} style={styles.backdrop} onPress={onCancel}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-          <Pressable style={styles.card} onPress={() => {}}>
+          <Pressable accessible={false} style={styles.card} onPress={() => {}}>
             <EWText variant="headlineMd" color={EW.onSurface} style={styles.title}>
               Rename recording
             </EWText>
             <TextInput
+              testID="rename-input"
               value={value}
               onChangeText={setValue}
               autoFocus
@@ -57,11 +58,17 @@ export function RenameDialog({
             />
             <View style={styles.row}>
               <Pressable
+                testID="rename-cancel"
+                accessibilityRole="button"
+                accessibilityLabel="Cancel"
                 onPress={onCancel}
                 style={({ pressed }) => [styles.btn, pressed && styles.pressed]}>
                 <EWText color={EW.onSurfaceVariant}>Cancel</EWText>
               </Pressable>
               <Pressable
+                testID="rename-save"
+                accessibilityRole="button"
+                accessibilityLabel="Save"
                 onPress={submit}
                 style={({ pressed }) => [styles.btn, styles.btnPrimary, pressed && styles.pressed]}>
                 <EWText color={EW.onPrimaryContainer}>Save</EWText>

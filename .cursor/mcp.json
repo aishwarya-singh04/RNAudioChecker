@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+      "maestro": {
+          "command": "/Users/aishwaryasingh/.maestro/bin/maestro",
+          "args": ["mcp"],
+          "env": {
+              "JAVA_HOME": "/Applications/Maestro Studio.app/Contents/Resources/app.asar.unpacked/bundled-jvm/mac-arm64/Contents/Home"
+          }
+      }
+  }
+}
